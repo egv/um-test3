@@ -21,6 +21,10 @@
 		90E5424F121EB83100CD532F /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E5424A121EB83100CD532F /* SBJsonWriter.m */; };
 		90E54257121EB8D500CD532F /* SpeciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E54255121EB8D500CD532F /* SpeciesViewController.m */; };
 		90E54258121EB8D500CD532F /* SpeciesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90E54256121EB8D500CD532F /* SpeciesViewController.xib */; };
+		90E54269121EC89900CD532F /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E54268121EC89900CD532F /* Placeholder.png */; };
+		90E54277121ECB5000CD532F /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E54272121ECB5000CD532F /* UIImage+Alpha.m */; };
+		90E54278121ECB5000CD532F /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E54274121ECB5000CD532F /* UIImage+Resize.m */; };
+		90E54279121ECB5000CD532F /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E54276121ECB5000CD532F /* UIImage+RoundedCorner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +53,13 @@
 		90E54254121EB8D500CD532F /* SpeciesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeciesViewController.h; sourceTree = "<group>"; };
 		90E54255121EB8D500CD532F /* SpeciesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeciesViewController.m; sourceTree = "<group>"; };
 		90E54256121EB8D500CD532F /* SpeciesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpeciesViewController.xib; sourceTree = "<group>"; };
+		90E54268121EC89900CD532F /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
+		90E54271121ECB5000CD532F /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		90E54272121ECB5000CD532F /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		90E54273121ECB5000CD532F /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		90E54274121ECB5000CD532F /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		90E54275121ECB5000CD532F /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		90E54276121ECB5000CD532F /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +121,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				90E54268121EC89900CD532F /* Placeholder.png */,
 				282CCBFD0DB6C98000C4EA27 /* SecondView.xib */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Test3-Info.plist */,
@@ -130,6 +142,7 @@
 		90E5423E121EB83100CD532F /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				90E54270121ECB5000CD532F /* UIImage */,
 				90E5423F121EB83100CD532F /* JSON */,
 			);
 			path = Libs;
@@ -151,6 +164,19 @@
 				90E5424A121EB83100CD532F /* SBJsonWriter.m */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		90E54270121ECB5000CD532F /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				90E54271121ECB5000CD532F /* UIImage+Alpha.h */,
+				90E54272121ECB5000CD532F /* UIImage+Alpha.m */,
+				90E54273121ECB5000CD532F /* UIImage+Resize.h */,
+				90E54274121ECB5000CD532F /* UIImage+Resize.m */,
+				90E54275121ECB5000CD532F /* UIImage+RoundedCorner.h */,
+				90E54276121ECB5000CD532F /* UIImage+RoundedCorner.m */,
+			);
+			path = UIImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +224,7 @@
 				28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */,
 				282CCBFE0DB6C98000C4EA27 /* SecondView.xib in Resources */,
 				90E54258121EB8D500CD532F /* SpeciesViewController.xib in Resources */,
+				90E54269121EC89900CD532F /* Placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +243,9 @@
 				90E5424E121EB83100CD532F /* SBJsonParser.m in Sources */,
 				90E5424F121EB83100CD532F /* SBJsonWriter.m in Sources */,
 				90E54257121EB8D500CD532F /* SpeciesViewController.m in Sources */,
+				90E54277121ECB5000CD532F /* UIImage+Alpha.m in Sources */,
+				90E54278121ECB5000CD532F /* UIImage+Resize.m in Sources */,
+				90E54279121ECB5000CD532F /* UIImage+RoundedCorner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

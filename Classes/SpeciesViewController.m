@@ -8,6 +8,7 @@
 
 #import "SpeciesViewController.h"
 #import "JSON.h"
+#import "UIImage+Resize.h"
 
 @implementation SpeciesViewController
 
@@ -87,11 +88,24 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Configure the cell...
     NSDictionary *rowData = [self.tableData objectAtIndex:indexPath.row];
 	cell.textLabel.text = [rowData objectForKey:@"title"];
 	cell.detailTextLabel.text = [rowData objectForKey:@"description"];
 	cell.detailTextLabel.numberOfLines = 2;
+	
+	NSString *imageURLString = [rowData objectForKey:@"image"];
+	UIImage *image;
+	if (imageURLString != nil) {
+		NSURL *imageURL = [NSURL URLWithString:imageURLString];
+		NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+		image = [[UIImage imageWithData:imageData] thumbnailImage:50
+												transparentBorder:2
+													 cornerRadius:10
+											 interpolationQuality:kCGInterpolationHigh];
+	} else {
+		image = [UIImage imageNamed:@"Placeholder.png"];
+	}
+	cell.imageView.image = image;
 	
     return cell;
 }
