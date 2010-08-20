@@ -10,10 +10,12 @@
 #import "JSON.h"
 #import "UIImage+Resize.h"
 #import "ASIHTTPRequest.h"
+#import "MBProgressHUD.h"
 
 @implementation SpeciesViewController
 
 @synthesize tableData;
+@synthesize progressHUD;
 
 #pragma mark -
 #pragma mark ASIHTTPRequestDelegate methods
@@ -24,16 +26,24 @@
 	[jsonParser release];
 	
 	[self.tableView reloadData];
+	[self.progressHUD hide:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+													message:@"Some error prevented us from getting data.\nYou can try to refresh it later."
+												   delegate:nil
+										  cancelButtonTitle:@"Ok"
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 }
 
 #pragma mark -
 #pragma mark actions
 
 - (IBAction)refreshPressed:(id)sender {
+	[self.progressHUD show:YES];
 	NSURL *dataURL = [NSURL URLWithString:@"http://unrealmojo.com/porn/test3/"];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:dataURL];
 	[request setDelegate:self];
@@ -46,6 +56,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
+	self.progressHUD = hud;
+	[self.view addSubview:self.progressHUD];
+	[hud release];
+	
 	UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
 																				   target:self
 																				   action:@selector(refreshPressed:)];
@@ -153,6 +168,7 @@
 
 - (void)dealloc {
 	[tableData release];
+	[progressHUD release];
 	
     [super dealloc];
 }

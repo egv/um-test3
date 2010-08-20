@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequestDelegate.h"
 
+@class MBProgressHUD;
+
 @interface SpeciesViewController : UITableViewController <ASIHTTPRequestDelegate> {
 	NSArray *tableData;
+	MBProgressHUD *progressHUD;
 }
 
 @property (nonatomic, retain) NSArray *tableData;
+@property (nonatomic, retain) MBProgressHUD *progressHUD;
 
 - (IBAction)refreshPressed:(id)sender;
 

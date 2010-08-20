@@ -36,6 +36,7 @@
 		90E5429C121ED92300CD532F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E5429B121ED92300CD532F /* MobileCoreServices.framework */; };
 		90E5429E121ED92300CD532F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E5429D121ED92300CD532F /* SystemConfiguration.framework */; };
 		90E542AE121ED93C00CD532F /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E542AD121ED93C00CD532F /* libz.1.2.3.dylib */; };
+		90E542CD121EF05C00CD532F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E542CC121EF05C00CD532F /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,8 @@
 		90E5429B121ED92300CD532F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		90E5429D121ED92300CD532F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		90E542AD121ED93C00CD532F /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		90E542CB121EF05C00CD532F /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		90E542CC121EF05C00CD532F /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +186,7 @@
 		90E5423E121EB83100CD532F /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				90E542CA121EF05C00CD532F /* MBProgressHUD */,
 				90E5427F121ED8DE00CD532F /* ASIHTTPRequest */,
 				90E54270121ECB5000CD532F /* UIImage */,
 				90E5423F121EB83100CD532F /* JSON */,
@@ -244,6 +248,15 @@
 				90E54291121ED8DE00CD532F /* Reachability.m */,
 			);
 			path = ASIHTTPRequest;
+			sourceTree = "<group>";
+		};
+		90E542CA121EF05C00CD532F /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				90E542CB121EF05C00CD532F /* MBProgressHUD.h */,
+				90E542CC121EF05C00CD532F /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +333,7 @@
 				90E54296121ED8DE00CD532F /* ASIInputStream.m in Sources */,
 				90E54297121ED8DE00CD532F /* ASINetworkQueue.m in Sources */,
 				90E54298121ED8DE00CD532F /* Reachability.m in Sources */,
+				90E542CD121EF05C00CD532F /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
