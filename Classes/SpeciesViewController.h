@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIHTTPRequestDelegate.h"
 
-
-@interface SpeciesViewController : UITableViewController {
+@interface SpeciesViewController : UITableViewController <ASIHTTPRequestDelegate> {
 	NSArray *tableData;
 }
 
 @property (nonatomic, retain) NSArray *tableData;
 
-
+- (IBAction)refreshPressed:(id)sender;
 
 @end

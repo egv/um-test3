@@ -9,10 +9,36 @@
 #import "SpeciesViewController.h"
 #import "JSON.h"
 #import "UIImage+Resize.h"
+#import "ASIHTTPRequest.h"
 
 @implementation SpeciesViewController
 
 @synthesize tableData;
+
+#pragma mark -
+#pragma mark ASIHTTPRequestDelegate methods
+
+- (void)requestFinished:(ASIHTTPRequest *)request {
+	SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+	self.tableData = [jsonParser objectWithString:[request responseString]];
+	[jsonParser release];
+	
+	[self.tableView reloadData];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+	
+}
+
+#pragma mark -
+#pragma mark actions
+
+- (IBAction)refreshPressed:(id)sender {
+	NSURL *dataURL = [NSURL URLWithString:@"http://unrealmojo.com/porn/test3/"];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:dataURL];
+	[request setDelegate:self];
+	[request startAsynchronous];
+}
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -20,14 +46,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	NSURL *dataURL = [NSURL URLWithString:@"http://unrealmojo.com/porn/test3/"];
-	NSString *dataString = [NSString stringWithContentsOfURL:dataURL];
+	UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+																				   target:self
+																				   action:@selector(refreshPressed:)];
+	self.navigationItem.rightBarButtonItem = refreshButton;
+	[refreshButton release];
 	
-	SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
-	self.tableData = [jsonParser objectWithString:dataString];
-	[jsonParser release];
-	
-	[self.tableView reloadData];
+	[self refreshPressed:nil];
 }
 
 /*
