@@ -37,6 +37,7 @@
 		90E5429E121ED92300CD532F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E5429D121ED92300CD532F /* SystemConfiguration.framework */; };
 		90E542AE121ED93C00CD532F /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E542AD121ED93C00CD532F /* libz.1.2.3.dylib */; };
 		90E542CD121EF05C00CD532F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E542CC121EF05C00CD532F /* MBProgressHUD.m */; };
+		90E54309121F0A1400CD532F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E54308121F0A1400CD532F /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		90E542AD121ED93C00CD532F /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		90E542CB121EF05C00CD532F /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		90E542CC121EF05C00CD532F /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		90E54308121F0A1400CD532F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				90E54308121F0A1400CD532F /* icon.png */,
 				90E54268121EC89900CD532F /* Placeholder.png */,
 				282CCBFD0DB6C98000C4EA27 /* SecondView.xib */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
@@ -305,6 +308,7 @@
 				282CCBFE0DB6C98000C4EA27 /* SecondView.xib in Resources */,
 				90E54258121EB8D500CD532F /* SpeciesViewController.xib in Resources */,
 				90E54269121EC89900CD532F /* Placeholder.png in Resources */,
+				90E54309121F0A1400CD532F /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

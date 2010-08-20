@@ -14,11 +14,17 @@
 @interface SpeciesViewController : UITableViewController <ASIHTTPRequestDelegate> {
 	NSArray *tableData;
 	MBProgressHUD *progressHUD;
+	
+	NSMutableDictionary *imageCache;
 }
 
 @property (nonatomic, retain) NSArray *tableData;
 @property (nonatomic, retain) MBProgressHUD *progressHUD;
+@property (nonatomic, retain) NSMutableDictionary *imageCache;
 
 - (IBAction)refreshPressed:(id)sender;
 
+// delayed images loading stuff
+- (void)loadImagesForOnscreenRows;
+- (void)startImageDownload:(NSString*)URLString forIndexPath:(NSIndexPath*)indexPath;
 @end

@@ -16,20 +16,55 @@
 
 @synthesize tableData;
 @synthesize progressHUD;
+@synthesize imageCache;
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+	{
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenRows];
+}
 
 #pragma mark -
 #pragma mark ASIHTTPRequestDelegate methods
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-	SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
-	self.tableData = [jsonParser objectWithString:[request responseString]];
-	[jsonParser release];
+	NSURL *origURL = request.originalURL;
 	
-	[self.tableView reloadData];
+	NSIndexPath *indexPath = [self.imageCache objectForKey:origURL];
+	if (indexPath == nil) {
+		// this is main json data
+		SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
+		self.tableData = [jsonParser objectWithString:[request responseString]];
+		[jsonParser release];
+		
+		[self.tableView reloadData];
+	} else {
+		// this is image loading
+		NSData *imageData = [request responseData];
+		UIImage *image = [[UIImage imageWithData:imageData] thumbnailImage:50
+														 transparentBorder:2
+															  cornerRadius:10
+													  interpolationQuality:kCGInterpolationHigh];
+		[[self.tableData objectAtIndex:indexPath.row] setObject:image forKey:@"__icon__"];
+		UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+		cell.imageView.image = image;
+	}
+	
 	[self.progressHUD hide:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
+	[self.progressHUD hide:YES];
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
 													message:@"Some error prevented us from getting data.\nYou can try to refresh it later."
 												   delegate:nil
@@ -44,10 +79,38 @@
 
 - (IBAction)refreshPressed:(id)sender {
 	[self.progressHUD show:YES];
+	self.imageCache = [NSMutableDictionary dictionary];	
 	NSURL *dataURL = [NSURL URLWithString:@"http://unrealmojo.com/porn/test3/"];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:dataURL];
 	[request setDelegate:self];
 	[request startAsynchronous];
+}
+
+- (void)loadImagesForOnscreenRows {
+    if ([self.tableData count] > 0) {
+        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths) {
+            NSDictionary *rowData = [self.tableData objectAtIndex:indexPath.row];
+            UIImage *tmpImage = [rowData objectForKey:@"__icon__"];
+            if (tmpImage == nil) {
+                [self startImageDownload:[rowData objectForKey:@"image"] forIndexPath:indexPath];
+            }
+        }
+    }
+}
+
+- (void)startImageDownload:(NSString*)URLString forIndexPath:(NSIndexPath*)indexPath {
+	NSURL *myURL = [NSURL URLWithString:URLString];
+	
+	if (myURL != nil) {
+		NSIndexPath *foo = [self.imageCache objectForKey:myURL];
+		if (foo == nil) {
+			[self.imageCache setObject:indexPath forKey:myURL];
+			ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:myURL];
+			[request setDelegate:self];
+			[request startAsynchronous];
+		}
+	}
 }
 
 #pragma mark -
@@ -56,6 +119,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	self.tableView.delegate = self;
+	
 	MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.view];
 	self.progressHUD = hud;
 	[self.view addSubview:self.progressHUD];
@@ -69,35 +134,6 @@
 	
 	[self refreshPressed:nil];
 }
-
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view data source
@@ -133,19 +169,19 @@
 	cell.detailTextLabel.text = [rowData objectForKey:@"description"];
 	cell.detailTextLabel.numberOfLines = 2;
 	
-	NSString *imageURLString = [rowData objectForKey:@"image"];
-	UIImage *image;
-	if (imageURLString != nil) {
-		NSURL *imageURL = [NSURL URLWithString:imageURLString];
-		NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-		image = [[UIImage imageWithData:imageData] thumbnailImage:50
-												transparentBorder:2
-													 cornerRadius:10
-											 interpolationQuality:kCGInterpolationHigh];
+	UIImage *image = [rowData objectForKey:@"__icon__"];
+	if (image != nil) {
+		cell.imageView.image = image;
 	} else {
-		image = [UIImage imageNamed:@"Placeholder.png"];
+		cell.imageView.image = [UIImage imageNamed:@"Placeholder.png"];
+		NSString *imageURLString = [rowData objectForKey:@"image"];
+		if (imageURLString != nil) {
+            if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
+            {
+                [self startImageDownload:imageURLString forIndexPath:indexPath];
+            }
+		}
 	}
-	cell.imageView.image = image;
 	
     return cell;
 }
@@ -154,10 +190,10 @@
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
     // Relinquish ownership any cached data, images, etc that aren't in use.
+	
 }
 
 - (void)viewDidUnload {
@@ -169,6 +205,7 @@
 - (void)dealloc {
 	[tableData release];
 	[progressHUD release];
+	[imageCache release];
 	
     [super dealloc];
 }
