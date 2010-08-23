@@ -13,9 +13,13 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		900728C21222542400682257 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 900728C11222542400682257 /* CoreMotion.framework */; };
-		909822FF1221A7E100D61ABF /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 909822FE1221A7E100D61ABF /* UIImage+Resize.m */; };
-		90A4382812226484005EE4D9 /* test-arc.png in Resources */ = {isa = PBXBuildFile; fileRef = 90A4382712226484005EE4D9 /* test-arc.png */; };
-		90A4382C12227607005EE4D9 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 90A4382B12227607005EE4D9 /* ball.png */; };
+		903B3CD51222E72600635087 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 903B3CD41222E72600635087 /* MessageUI.framework */; };
+		903B3CE31222ECCC00635087 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 903B3CE21222ECCC00635087 /* UIImage+Resize.m */; };
+		903B3CF41222EE3E00635087 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 903B3CF31222EE3E00635087 /* Localizable.strings */; };
+		90A438A01222DD60005EE4D9 /* earth.png in Resources */ = {isa = PBXBuildFile; fileRef = 90A4389E1222DD60005EE4D9 /* earth.png */; };
+		90A438A11222DD60005EE4D9 /* hamster.png in Resources */ = {isa = PBXBuildFile; fileRef = 90A4389F1222DD60005EE4D9 /* hamster.png */; };
+		90D0DE661222F47100C9255D /* eart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D0DE641222F47100C9255D /* eart@2x.png */; };
+		90D0DE671222F47100C9255D /* hamster@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D0DE651222F47100C9255D /* hamster@2x.png */; };
 		90DB77CE121F2232009F08BE /* SpecieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB77CC121F2232009F08BE /* SpecieDetailViewController.m */; };
 		90DB77CF121F2232009F08BE /* SpecieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90DB77CD121F2232009F08BE /* SpecieDetailViewController.xib */; };
 		90DB77D8121F26F2009F08BE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90DB77D7121F26F2009F08BE /* QuartzCore.framework */; };
@@ -44,8 +48,6 @@
 		90F464FC1220089F00FC4753 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90F464FB1220089F00FC4753 /* MainWindow.xib */; };
 		90F46530122015DC00FC4753 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F4652F122015DC00FC4753 /* icon@2x.png */; };
 		90F46552122019C600FC4753 /* Placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90F46551122019C600FC4753 /* Placeholder@2x.png */; };
-		90FFBAA112202AF90021B446 /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = 90FFBA9F12202AF90021B446 /* me.png */; };
-		90FFBAA212202AF90021B446 /* me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90FFBAA012202AF90021B446 /* me@2x.png */; };
 		90FFBAA612202B6B0021B446 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FFBAA512202B6B0021B446 /* AboutViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -62,10 +64,16 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Test3-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Test3-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		900728C11222542400682257 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		909822FD1221A7E000D61ABF /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "../UIImage+Resize.h"; sourceTree = "<group>"; };
-		909822FE1221A7E100D61ABF /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "../UIImage+Resize.m"; sourceTree = "<group>"; };
-		90A4382712226484005EE4D9 /* test-arc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test-arc.png"; sourceTree = "<group>"; };
-		90A4382B12227607005EE4D9 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
+		903B3CD41222E72600635087 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		903B3CE11222ECCC00635087 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		903B3CE21222ECCC00635087 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		903B3CE41222ECDB00635087 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		903B3CF51222EE4500635087 /* Russian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Russian; path = Russian.lproj/Localizable.strings; sourceTree = "<group>"; };
+		904A58B51222F18E002E44E4 /* Russian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Russian; path = Russian.lproj/AboutViewController.xib; sourceTree = "<group>"; };
+		90A4389E1222DD60005EE4D9 /* earth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earth.png; sourceTree = "<group>"; };
+		90A4389F1222DD60005EE4D9 /* hamster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamster.png; sourceTree = "<group>"; };
+		90D0DE641222F47100C9255D /* eart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eart@2x.png"; sourceTree = "<group>"; };
+		90D0DE651222F47100C9255D /* hamster@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamster@2x.png"; sourceTree = "<group>"; };
 		90DB77CB121F2232009F08BE /* SpecieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecieDetailViewController.h; sourceTree = "<group>"; };
 		90DB77CC121F2232009F08BE /* SpecieDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecieDetailViewController.m; sourceTree = "<group>"; };
 		90DB77CD121F2232009F08BE /* SpecieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpecieDetailViewController.xib; sourceTree = "<group>"; };
@@ -113,8 +121,6 @@
 		90F4652512200B6E00FC4753 /* Russian */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Russian; path = Russian.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		90F4652F122015DC00FC4753 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		90F46551122019C600FC4753 /* Placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Placeholder@2x.png"; sourceTree = "<group>"; };
-		90FFBA9F12202AF90021B446 /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
-		90FFBAA012202AF90021B446 /* me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "me@2x.png"; sourceTree = "<group>"; };
 		90FFBAA412202B6B0021B446 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		90FFBAA512202B6B0021B446 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +139,7 @@
 				90E542AE121ED93C00CD532F /* libz.1.2.3.dylib in Frameworks */,
 				90DB77D8121F26F2009F08BE /* QuartzCore.framework in Frameworks */,
 				900728C21222542400682257 /* CoreMotion.framework in Frameworks */,
+				903B3CD51222E72600635087 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,8 +149,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				909822FD1221A7E000D61ABF /* UIImage+Resize.h */,
-				909822FE1221A7E100D61ABF /* UIImage+Resize.m */,
+				903B3CE11222ECCC00635087 /* UIImage+Resize.h */,
+				903B3CE21222ECCC00635087 /* UIImage+Resize.m */,
 				90FFBAA412202B6B0021B446 /* AboutViewController.h */,
 				90FFBAA512202B6B0021B446 /* AboutViewController.m */,
 				90DB77CB121F2232009F08BE /* SpecieDetailViewController.h */,
@@ -191,10 +198,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				90A4382B12227607005EE4D9 /* ball.png */,
-				90A4382712226484005EE4D9 /* test-arc.png */,
-				90FFBA9F12202AF90021B446 /* me.png */,
-				90FFBAA012202AF90021B446 /* me@2x.png */,
+				90D0DE641222F47100C9255D /* eart@2x.png */,
+				90D0DE651222F47100C9255D /* hamster@2x.png */,
+				903B3CF31222EE3E00635087 /* Localizable.strings */,
+				90A4389E1222DD60005EE4D9 /* earth.png */,
+				90A4389F1222DD60005EE4D9 /* hamster.png */,
 				90F46551122019C600FC4753 /* Placeholder@2x.png */,
 				90F4652F122015DC00FC4753 /* icon@2x.png */,
 				90E54308121F0A1400CD532F /* icon.png */,
@@ -218,6 +226,7 @@
 				90E542AD121ED93C00CD532F /* libz.1.2.3.dylib */,
 				90DB77D7121F26F2009F08BE /* QuartzCore.framework */,
 				900728C11222542400682257 /* CoreMotion.framework */,
+				903B3CD41222E72600635087 /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -343,10 +352,11 @@
 				90DB77CF121F2232009F08BE /* SpecieDetailViewController.xib in Resources */,
 				90F46530122015DC00FC4753 /* icon@2x.png in Resources */,
 				90F46552122019C600FC4753 /* Placeholder@2x.png in Resources */,
-				90FFBAA112202AF90021B446 /* me.png in Resources */,
-				90FFBAA212202AF90021B446 /* me@2x.png in Resources */,
-				90A4382812226484005EE4D9 /* test-arc.png in Resources */,
-				90A4382C12227607005EE4D9 /* ball.png in Resources */,
+				90A438A01222DD60005EE4D9 /* earth.png in Resources */,
+				90A438A11222DD60005EE4D9 /* hamster.png in Resources */,
+				903B3CF41222EE3E00635087 /* Localizable.strings in Resources */,
+				90D0DE661222F47100C9255D /* eart@2x.png in Resources */,
+				90D0DE671222F47100C9255D /* hamster@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,17 +385,27 @@
 				90E542CD121EF05C00CD532F /* MBProgressHUD.m in Sources */,
 				90DB77CE121F2232009F08BE /* SpecieDetailViewController.m in Sources */,
 				90FFBAA612202B6B0021B446 /* AboutViewController.m in Sources */,
-				909822FF1221A7E100D61ABF /* UIImage+Resize.m in Sources */,
+				903B3CE31222ECCC00635087 /* UIImage+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		903B3CF31222EE3E00635087 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				903B3CE41222ECDB00635087 /* English */,
+				903B3CF51222EE4500635087 /* Russian */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		90F464F91220089F00FC4753 /* AboutViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				282CCBFD0DB6C98000C4EA27 /* English */,
+				904A58B51222F18E002E44E4 /* Russian */,
 			);
 			name = AboutViewController.xib;
 			sourceTree = SOURCE_ROOT;

@@ -74,9 +74,9 @@
 - (void)requestFailed:(ASIHTTPRequest *)request {
     [self.progressHUD hide:YES];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                    message:@"Some error prevented us from getting data.\nYou can try to refresh it later."
+                                                    message:NSLocalizedString(@"network problem", @"Some error prevented us from getting data.\nYou can try to refresh it later.")
                                                    delegate:nil
-                                          cancelButtonTitle:@"Ok"
+                                          cancelButtonTitle:NSLocalizedString(@"ok", @"Ok")
                                           otherButtonTitles:nil];
     [alert show];
     [alert release];

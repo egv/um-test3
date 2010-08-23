@@ -8,26 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
+#import <MessageUI/MessageUI.h>
 
-@interface AboutViewController : UIViewController {
-    UILabel *scoreLabel;
+@interface AboutViewController : UIViewController <MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate> {
     UIImageView *myArc;
-    UIImageView *myBall;
     
     CMMotionManager *motionManager;
     NSOperationQueue *opQ;
     CMAttitude *firstAttitude;
     
-    CGFloat valpha;
-    CGFloat modv;
-    
-    NSInteger score;
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *scoreLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *myArc;
-@property (nonatomic, retain) IBOutlet UIImageView *myBall;
 @property (nonatomic, retain) CMAttitude *firstAttitude;
 
+- (IBAction)sendMail:(id)sender;
+- (IBAction)sendSms:(id)sender;
 
 @end

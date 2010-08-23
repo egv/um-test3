@@ -9,40 +9,77 @@
 #import "AboutViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreMotion/CoreMotion.h>
-
-#define R0 95
+#import "Test3AppDelegate.h"
+#import <MEssageUI/MessageUI.h>
 
 @implementation AboutViewController
 
-@synthesize scoreLabel;
 @synthesize myArc;
-@synthesize myBall;
 
 @synthesize firstAttitude;
 
+#pragma mark -
+#pragma mark delegate methods
 
-- (CGFloat)normAngle:(CGFloat)angle {
-    CGFloat res = angle;
-
-    while (res < 0){
-        res += M_PI*2;
-    }
-    
-    while (res >= M_PI*2){
-        res -= M_PI*2;
-    }
-
-    return res;
+- (void)mailComposeController:(MFMailComposeViewController*)controller 
+		  didFinishWithResult:(MFMailComposeResult)result 
+						error:(NSError*)error {
+	[self dismissModalViewControllerAnimated:YES];
 }
 
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller 
+				 didFinishWithResult:(MessageComposeResult)result {
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark -
+#pragma mark actions
+
+- (IBAction)sendMail:(id)sender {
+	if ([MFMailComposeViewController canSendMail]) {
+		MFMailComposeViewController *viewController = [[MFMailComposeViewController alloc] init];
+		[viewController setToRecipients:[NSArray arrayWithObject:@"g.evstratov@gmail.com"]];
+		[viewController setSubject:@"Hamster says"];
+		viewController.mailComposeDelegate = self;
+		
+		[self presentModalViewController:viewController animated:YES];
+		[viewController release];
+	} else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"noemail", @"You can not send email.")
+														message:NSLocalizedString(@"contactmebyemail", @"If you want to contact me please send email to g.evstratov@gmail.com")
+													   delegate:nil
+											  cancelButtonTitle:NSLocalizedString(@"ok", @"ok")
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+}
+
+- (IBAction)sendSms:(id)sender {
+	if ([MFMessageComposeViewController canSendText]) {
+		MFMessageComposeViewController *viewController = [[MFMessageComposeViewController alloc] init];
+		[viewController setRecipients:[NSArray arrayWithObject:@"+79263443443"]];
+		[viewController setBody:@""];
+		viewController.messageComposeDelegate = self;
+		
+		[self presentModalViewController:viewController animated:YES];
+		[viewController release];
+	} else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"nosms", @"You can not send SMS.")
+														message:NSLocalizedString(@"smscontact", @"If you want to contact me please send SMS to +7 (926) 344-3443.\n(no voice calls please)")
+													   delegate:nil
+											  cancelButtonTitle:NSLocalizedString(@"ok", @"ok")
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+}
+
+
+
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    modv = 3.0;
-    valpha = M_PI/8;
-    self.myBall.center = CGPointMake(100, 250);
-    score = 0;
-    self.myArc.image = [UIImage imageNamed:@"test-arc"];
+    [super viewDidLoad];    
+    self.myArc.image = [UIImage imageNamed:@"hamster"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -52,7 +89,7 @@
     motionManager.deviceMotionUpdateInterval = 1.0 / 60.0;
     
     if (motionManager.isDeviceMotionAvailable) {
-        opQ = [NSOperationQueue currentQueue];
+        opQ = [[NSOperationQueue currentQueue] retain];
         [motionManager startDeviceMotionUpdatesToQueue:opQ withHandler:^(CMDeviceMotion *motion, NSError *error) {
             if (self.firstAttitude == nil) {
                 NSLog(@"remembering the first attitude");
@@ -61,88 +98,24 @@
                 [motion.attitude multiplyByInverseOfAttitude:self.firstAttitude];
                 CGAffineTransform t = CGAffineTransformMakeRotation(motion.attitude.yaw);
                 self.myArc.transform = t;
-
-                CGFloat newy = self.myBall.center.y - modv*sin(valpha);
-                CGFloat newx = self.myBall.center.x + modv*cos(valpha);
-
-                CGFloat lX = newx - 160;
-                CGFloat lY = (-1.0 * (newy - 291));
-                // check if ball is beyoung the circle
-                if (pow(lX, 2) + pow(lY, 2) >= R0*R0) {
-                    // check if it is in the bat area
-                    
-                    // new reflection tests
-                    
-                    
-                    
-                    
-                    CGFloat nYaw = M_PI/2 - motion.attitude.yaw; //[self normAngle:motion.attitude.yaw*3];
-                    
-                    CGFloat batA;
-                    if (lX == 0) {
-                        batA = lY > 0? M_PI/2 : -M_PI/2;
-                    } else {
-                        CGFloat at = atan(lY/lX);
-                        batA = lX < 0 ? M_PI - at : at; 
-                    }
-                    
-                    CGFloat nBat = [self normAngle:batA];
-                    
-                    CGFloat bit = M_PI / 8;
-                    //NSLog(@"nbat: %.03f, yaw: %.03f, bit: %.03f", nBat, nYaw, bit);
-                    //if (nBat > nYaw - bit && nBat < nYaw + bit ) {
-                        // we are beyond the circle
-                        // put them on it in the first place                    
-                        
-                        CGFloat R = sqrtf(pow(lX, 2) + pow(lY, 2));                
-                        if (R > R0) {
-                            lX = lX * R0 / R;
-                            lY = lY * R0 / R;
-                        }
-                        
-                        CGFloat phi;
-                        if (lX == 0) {
-                            phi = M_PI / 2 * (lY > 0 ? 1.0 : -1.0);
-                        } else {
-                            phi = -1.0 * atanf(lX/lY);
-                        }
-                    
-                    NSLog(@"%@", NSStringFromCGPoint(CGPointApplyAffineTransform(CGPointMake(lX, lY), CGAffineTransformMakeRotation(M_PI/2+phi))));
-                    newx = 160 + lX;
-                    newy = 291 - lY;
-                        NSLog(@"x: %f, y: %f, phi: %f", lX, lY, phi);
-                        valpha = [self normAngle:(M_PI + 2 * (M_PI - phi) - valpha)];
-                        
-                        //NSLog(@"valpha: %f", valpha);
-                /*    
-                } else {
-                       score += 1;
-                        self.scoreLabel.text = [NSString stringWithFormat:@"%d", score];
-                        modv = 1.0;
-                        valpha = M_PI/7;
-                        newx = 100;
-                        newy = 250;
-                    }
-                */    
-                }
-                self.myBall.center = CGPointMake(newx, newy);
             }
         }];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"You device is uncapable of handling motion events"
+                                                        message:NSLocalizedString(@"nocoremove", @"unable to user CoreMove")
                                                        delegate:nil
-                                              cancelButtonTitle:@"Too sad"
+                                              cancelButtonTitle:NSLocalizedString(@"toosad", @"too sad")
                                               otherButtonTitles:nil];
         [alert show];
         [alert release];
         
         [motionManager release];
+        motionManager = nil;
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    if (motionManager) {
+    if (motionManager != nil) {
         [motionManager stopDeviceMotionUpdates];
         [opQ release];
         [motionManager release];
@@ -160,17 +133,13 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    self.scoreLabel = nil;
     self.myArc = nil;
-    self.myBall = nil;
 }
 
 
 - (void)dealloc {
     [myArc release];
-	[scoreLabel release];
     [firstAttitude release];
-    [myBall release];
     
     [super dealloc];
 }
